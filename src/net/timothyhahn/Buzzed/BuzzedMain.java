@@ -55,29 +55,7 @@ public class BuzzedMain extends Activity {
         fragment.setArguments(args);
 
         getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
-        /**
-        Button buzzButton = (Button)findViewById(R.id.buzzButton);
-        buzzButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Vibrator vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
-                vibrator.vibrate(new long[]{0,500,110,500,110,450,110,200,110,170,40,450,110,200,110,170,40,500}, -1);
-            }
-        });
 
-        Button alarmButton = (Button)findViewById(R.id.alarmButton);
-        Intent intent = new Intent(this, AlarmReceiver.class);
-
-
-        alarmIntent = PendingIntent.getBroadcast(getBaseContext(), 234324243, intent, 0);
-        alarmButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AlarmManager am = (AlarmManager) getSystemService(ALARM_SERVICE);
-                am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 5 * 1000, alarmIntent);
-            }
-        });
-        **/
     }
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
