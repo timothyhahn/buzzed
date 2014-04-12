@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Buzzed</string>
+    <string name="add_alarm">Add New Alarm</string>
+    <string name="add_vibration">Add New Vibration</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+    <string name="action_websearch">Web search</string>
     <string-array name="menu_names">
         <item>Buzzed</item>
         <item>Vibrations</item>

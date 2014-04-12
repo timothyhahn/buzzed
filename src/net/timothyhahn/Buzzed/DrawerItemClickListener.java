@@ -22,6 +22,7 @@ public class DrawerItemClickListener implements ListView.OnItemClickListener {
     public DrawerItemClickListener(Activity activity) {
         this.mActionBar = activity.getActionBar();
         this.mFragmentManager = activity.getFragmentManager();
+        this.mParentActivity = activity;
     }
 
     @Override
@@ -30,15 +31,21 @@ public class DrawerItemClickListener implements ListView.OnItemClickListener {
     }
 
     private void selectItem(int position) {
+        DrawerLayout drawerLayout = (DrawerLayout) mParentActivity.findViewById(R.id.drawer_layout);
+        ListView drawerList = (ListView) mParentActivity.findViewById(R.id.left_drawer);
+        String[] menuOptions = mParentActivity.getResources().getStringArray(R.array.menu_names);
         Fragment fragment = new BuzzedFragment();
         Bundle args = new Bundle();
+
+
         args.putInt(BuzzedFragment.ARG_BUZZED_NUMBER, position);
         fragment.setArguments(args);
 
         mFragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 
-        //DrawerLayout mDrawerLayout = (DrawerLayout) mParentActivity.findViewById(R.id.drawer_layout);
-        //ListView mDrawerList = (ListView) mParentActivity.findViewById(R.id.left_drawer);
+        drawerList.setItemChecked(position, true);
+        setTitle(menuOptions[position]);
+        drawerLayout.closeDrawer(drawerList);
     }
 
     public void setTitle(CharSequence title) {
