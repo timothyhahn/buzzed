@@ -11,5 +11,8 @@
             />
     <Button android:id="@+id/buzzButton" android:layout_width="300px" android:layout_height="150px"
             android:text = "Buzz"/>
+
+    <Button android:id="@+id/alarmButton" android:layout_width="300px" android:layout_height="150px"
+            android:text = "Alarm"/>
 </LinearLayout>
 
