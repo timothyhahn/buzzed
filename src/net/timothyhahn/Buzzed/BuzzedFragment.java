@@ -4,12 +4,13 @@ import android.app.AlarmManager;
 import android.app.Fragment;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,7 +18,7 @@ import android.widget.Toast;
 /**
  * Created by tim on 4/12/14.
  */
-public class BuzzedFragment extends Fragment {
+public class BuzzedFragment extends Fragment  implements SurfaceHolder.Callback{
     public static final String ARG_BUZZED_NUMBER = "BUZZED_NUMBER";
     private PendingIntent mAlarmIntent;
     private int mSecondsLeft = 1;
@@ -75,8 +76,47 @@ public class BuzzedFragment extends Fragment {
             }
         });
 
+        // Drawable stuff
+
+
+        SurfaceView surfaceView = (SurfaceView)view.findViewById(R.id.drawable_surface);
+        surfaceView.getHolder().addCallback(this);
+        surfaceView.invalidate();
+
+
+        //surfaceView.draw(canvas);
 
         return view;
+
+    }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+        tryDrawing(holder);
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int i, int i2, int i3) {
+        tryDrawing(holder);
+    }
+    private void tryDrawing(SurfaceHolder holder) {
+
+        Canvas canvas = holder.lockCanvas();
+        if (canvas == null) {
+        } else {
+            drawMyStuff(canvas);
+            holder.unlockCanvasAndPost(canvas);
+        }
+    }
+
+    private void drawMyStuff(final Canvas canvas) {
+        Paint paint = new Paint();
+        paint.setColor(Color.RED);
+        canvas.drawRect(0,0,10,10,paint);
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
 
     }
 }
