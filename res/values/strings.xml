@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Buzzed</string>
+    <string-array name="menu_names">
+        <item>Buzzed</item>
+        <item>Vibrations</item>
+        <item>Alarms</item>
+        <item>Settings</item>
+    </string-array>
 </resources>

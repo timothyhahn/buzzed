@@ -1,16 +1,14 @@
 package net.timothyhahn.Buzzed;
 
-import android.app.Activity;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
+import android.app.*;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.os.Vibrator;
+import android.support.v4.widget.DrawerLayout;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.*;
 
 public class BuzzedMain extends Activity {
     private PendingIntent alarmIntent;
@@ -21,6 +19,15 @@ public class BuzzedMain extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+
+        String[] mMenuOptions = getResources().getStringArray(R.array.menu_names);
+        DrawerLayout mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ListView mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mMenuOptions));
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener(this));
+
+        /**
         Button buzzButton = (Button)findViewById(R.id.buzzButton);
         buzzButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,5 +49,6 @@ public class BuzzedMain extends Activity {
                 am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 5 * 1000, alarmIntent);
             }
         });
+        **/
     }
 }
