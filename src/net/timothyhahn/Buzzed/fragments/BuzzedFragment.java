@@ -1,4 +1,4 @@
-package net.timothyhahn.Buzzed;
+package net.timothyhahn.Buzzed.fragments;
 
 import android.app.AlarmManager;
 import android.app.Fragment;
@@ -14,12 +14,13 @@ import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import net.timothyhahn.Buzzed.AlarmReceiver;
+import net.timothyhahn.Buzzed.R;
 
 /**
  * Created by tim on 4/12/14.
  */
 public class BuzzedFragment extends Fragment  implements SurfaceHolder.Callback{
-    public static final String ARG_BUZZED_NUMBER = "BUZZED_NUMBER";
     private PendingIntent mAlarmIntent;
     private int mSecondsLeft = 1;
     private EditText mScheduleSeconds;
@@ -27,44 +28,21 @@ public class BuzzedFragment extends Fragment  implements SurfaceHolder.Callback{
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        Log.d("HI1", Integer.toString(getArguments().getInt(ARG_BUZZED_NUMBER)));
-
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Integer fragmentNumber = getArguments().getInt(ARG_BUZZED_NUMBER);
-        View view;
-        switch(fragmentNumber) {
-            case 1:
-                view = inflater.inflate(R.layout.fragment_vibrations, container, false);
-                break;
-            case 2:
-                view = inflater.inflate(R.layout.fragment_alarms, container, false);
-                break;
-            case 3:
-                view  = inflater.inflate(R.layout.fragment_settings, container, false);
-                break;
-            default:
-                view = buzzedView(inflater, container);
-                break;
-        }
-        Log.d("HI2", Integer.toString(getArguments().getInt(ARG_BUZZED_NUMBER)));
-        return view;
-    }
-
-    public View buzzedView(LayoutInflater inflater, ViewGroup container) {
         View view = inflater.inflate(R.layout.fragment_buzzed, container, false);
 
-        Button scheduleButton = (Button)view.findViewById(R.id.schedule_alarm);
-        mScheduleSeconds = (EditText)view.findViewById(R.id.schedule_seconds);
+        Button scheduleButton = (Button) view.findViewById(R.id.schedule_alarm);
+        mScheduleSeconds = (EditText) view.findViewById(R.id.schedule_seconds);
         Intent intent = new Intent(getActivity(), AlarmReceiver.class);
         mAlarmIntent = PendingIntent.getBroadcast(getActivity().getBaseContext(), 234324243, intent, 0);
 
         scheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                try{
+                try {
                     mSecondsLeft = Integer.parseInt(mScheduleSeconds.getText().toString());
                     Toast.makeText(getActivity().getBaseContext(), "Alarm scheduled for " + mSecondsLeft + " seconds", Toast.LENGTH_LONG).show();
                 } catch (NumberFormatException nfe) {
@@ -79,15 +57,11 @@ public class BuzzedFragment extends Fragment  implements SurfaceHolder.Callback{
         // Drawable stuff
 
 
-        SurfaceView surfaceView = (SurfaceView)view.findViewById(R.id.drawable_surface);
-        surfaceView.getHolder().addCallback(this);
-        surfaceView.invalidate();
-
-
-        //surfaceView.draw(canvas);
+        //SurfaceView surfaceView = (SurfaceView) view.findViewById(R.id.drawable_surface);
+        //surfaceView.getHolder().addCallback(this);
+//        surfaceView.invalidate();
 
         return view;
-
     }
 
     @Override

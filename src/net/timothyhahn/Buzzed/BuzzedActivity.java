@@ -7,8 +7,9 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.View;
 import android.widget.*;
+import net.timothyhahn.Buzzed.fragments.BuzzedFragment;
 
-public class BuzzedMain extends Activity {
+public class BuzzedActivity extends Activity {
     private PendingIntent mAlarmIntent;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -48,11 +49,6 @@ public class BuzzedMain extends Activity {
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener(this));
 
         Fragment fragment = new BuzzedFragment();
-        Bundle args = new Bundle();
-
-
-        args.putInt(BuzzedFragment.ARG_BUZZED_NUMBER, 0);
-        fragment.setArguments(args);
 
         getFragmentManager().beginTransaction().replace(R.id.content_frame, fragment).commit();
 

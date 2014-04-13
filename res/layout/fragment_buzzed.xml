@@ -16,6 +16,7 @@
         <Button android:id="@+id/schedule_alarm" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Schedule"></Button>
 
     </LinearLayout>
+    <TimePicker android:layout_height="wrap_content" android:layout_width="fill_parent"></TimePicker>
     <SurfaceView android:id="@+id/drawable_surface" android:layout_height="fill_parent" android:layout_width="fill_parent"></SurfaceView>
 
 </LinearLayout>
